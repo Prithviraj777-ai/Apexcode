@@ -8,9 +8,9 @@ const { ValidationError, AuthenticationError } = require("../core/customErrors")
 
 const COOKIE_OPTIONS = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'strict',
-  maxAge: 60 * 60 * 1000 // 1 hour
+  secure: true,
+  sameSite: 'none',
+  maxAge: 60 * 60 * 1000
 };
 
 const register = async (req, res, next) => {
@@ -98,11 +98,11 @@ const logout = async (req, res, next) => {
             }
         }
 
-        res.cookie("token", "", { 
-            httpOnly: true, 
-            secure: process.env.NODE_ENV === 'production', 
-            sameSite: 'strict', 
-            expires: new Date(0) 
+        res.cookie("token", "", {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        expires: new Date(0)
         });
         res.status(200).send("Logged out successfully");
     } catch (err) {
@@ -142,12 +142,12 @@ const deleteProfile = async (req, res, next) => {
       const userId = req.result._id;
       await User.findByIdAndDelete(userId);
       
-      res.cookie("token", "", { 
-          httpOnly: true, 
-          secure: process.env.NODE_ENV === 'production', 
-          sameSite: 'strict', 
-          expires: new Date(0) 
-      });
+      res.cookie("token", "", {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        expires: new Date(0)
+        });
       res.status(200).send("Profile deleted successfully");
     } catch (err) {
       next(err);
