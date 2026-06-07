@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-inter);
+    @apply bg-[#030712] text-slate-100 antialiased selection:bg-indigo-500/30 selection:text-indigo-200;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit);
+    @apply tracking-tight font-semibold text-white;
+  }
+}
+
+@layer utilities {
+  /* Scrollbars */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors;
+  }
+  
+  /* Hide scrollbars */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Glassmorphic Panels */
+  .glass-panel {
+    @apply bg-[#0b0f19]/70 backdrop-blur-md border border-slate-800/60 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-[#090d16]/40 backdrop-blur-sm border border-slate-800/50 shadow-md hover:border-slate-700/80 transition-all duration-300;
+  }
+  
+  .glass-input {
+    @apply bg-[#0b0f19]/50 border border-slate-800/80 text-slate-100 placeholder:text-slate-500 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 focus:outline-none transition-all duration-200 rounded-lg;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400;
+  }
+
+  .gradient-border {
+    position: relative;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+  }
+
+  .gradient-glow {
+    box-shadow: 0 0 20px 2px rgba(99, 102, 241, 0.1);
+  }
+  
+  .gradient-glow-success {
+    box-shadow: 0 0 20px 2px rgba(16, 185, 129, 0.15);
+  }
+  
+  .gradient-glow-error {
+    box-shadow: 0 0 20px 2px rgba(239, 68, 68, 0.15);
+  }
+}
